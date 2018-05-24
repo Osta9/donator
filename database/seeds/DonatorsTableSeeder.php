@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\User;
+use App\BloodType;
 
 class DonatorsTableSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class DonatorsTableSeeder extends Seeder
                 'birth_date' => $faker->date(),
                 'address' => $faker->address(),
                 'phone' => $faker->phoneNumber(),
-                'blood_type' => 1
+                'blood_type' => $faker->randomElement(BloodType::pluck('type')->toArray()),
             ]);
         }
     }

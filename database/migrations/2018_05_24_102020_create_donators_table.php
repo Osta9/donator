@@ -21,7 +21,7 @@ class CreateDonatorsTable extends Migration
             $table->date('birth_date');
             $table->string('address');
             $table->string('phone');
-            $table->string('blood_type');
+            $table->integer('blood_type_id');
             $table->timestamps();
         });
     }
