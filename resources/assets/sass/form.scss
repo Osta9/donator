@@ -1,0 +1,58 @@
+.donor-form {
+    width: 100%;
+    input {
+        background: transparent;
+        border: none;
+        outline: none;
+        text-align: center;
+        border-bottom: 1px solid $donor;
+        border-radius: 0;
+        color: $donor;
+        &:focus {
+            color: $donor;
+            border-color: $donor;
+            box-shadow: 0 0 0 0.2rem rgba(165, 34, 0, .25);
+        }
+    }
+}
+
+.auth-form {
+    img {
+        max-height: 200px;
+    }
+}
+
+/* Placeholder text */
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgba(165, 34, 0, .8)!important;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgba(165, 34, 0, .8)!important;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgba(165, 34, 0, .8)!important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(165, 34, 0, .8)!important;
+}
+
+:-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(165, 34, 0, .8)!important;
+}
+
+input {
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}

@@ -17,5 +17,16 @@ Vue.use(BootstrapVue);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    methods: {
+        logout: function () {
+            axios.post('/logout').
+            then(response => {
+                location.reload()
+            }).
+            catch(function (error) {
+                console.log("An error ocurred -> " + error);
+            });
+        }
+    }
 });

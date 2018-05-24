@@ -13,63 +13,58 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<div id="app">
+    <b-container>
+        <b-navbar toggleable="md" type="light" class="donor-navbar">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+            <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-                    </ul>
+            <b-navbar-brand href="#" class="flex-center">
+                <img class="img-fluid" src="/../img/brand.png">
+            </b-navbar-brand>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+            <b-collapse is-nav id="nav_collapse">
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                <b-navbar-nav>
+                    <b-nav-item href="{{ route('welcome') }}"
+                                class="{{ strpos(Route::currentRouteName(), 'welcome') === 0 ? 'active' : null }}">
+                        Naslovnica
+                    </b-nav-item>
+                    @guest
+                        <b-nav-item href="{{ route('login') }}"
+                                    class="{{ strpos(Route::currentRouteName(), 'login') === 0 ? 'active' : null }}">
+                            Prijava
+                        </b-nav-item>
+                        <b-nav-item href="{{ route('register') }}"
+                                    class="{{ strpos(Route::currentRouteName(), 'register') === 0 ? 'active' : null }}">
+                            Registracija
+                        </b-nav-item>
+                    @endguest
+                </b-navbar-nav>
+                @auth
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item href="{{ route('home') }}">
+                            {{ Auth::user()->email }}
+                        </b-nav-item>
+                        <b-nav-item-dropdown right>
+                            <b-dropdown-item @click="logout">
+                                Odjava
+                            </b-dropdown-item>
+                        </b-nav-item-dropdown>
+                    </b-navbar-nav>
+                @endauth
+            </b-collapse>
+        </b-navbar>
+    </b-container>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <main>
+        @yield('content')
+    </main>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+</div>
 </body>
 </html>
