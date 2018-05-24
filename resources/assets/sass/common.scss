@@ -21,7 +21,6 @@ html,body {
     }
 }
 
-
 .flex-center {
     display:flex;
     justify-content:center;
@@ -46,4 +45,8 @@ a {
         cursor: pointer;
         color: rgba(165,34,0,.25);
     }
+}
+
+#footer {
+    background: transparent;
 }

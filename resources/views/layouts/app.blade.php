@@ -61,10 +61,18 @@
         </b-navbar>
     </b-container>
 
-    <main>
+    <b-container fluid id="main" class="my-4">
         @yield('content')
-    </main>
+    </b-container>
 
+    <b-row id="footer" class="flex-center col-12">
+        <b-col cols="8">
+            <hr class="hr-red">
+        </b-col>
+        <b-col cols=5>
+            <footer class="text-center my-3">Sustav za transfuziologiju @ 2018.</footer>
+        </b-col>
+    </b-row>
 </div>
 </body>
 </html>
