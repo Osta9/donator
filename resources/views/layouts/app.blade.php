@@ -73,7 +73,7 @@
         </b-navbar>
     </b-container>
 
-    <b-container fluid id="main" class="my-4 p-0">
+    <b-container fluid id="main" class="flex-center my-4 p-0">
         @yield('content')
     </b-container>
 

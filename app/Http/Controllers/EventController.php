@@ -15,7 +15,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::All();
-        
+
         return view('events.index', compact('events'));
     }
 
@@ -37,7 +37,21 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'info' => 'required'
+        ]);
+
+        Event::create(request([
+            'city',
+            'address',
+            'info',
+            'date'
+        ]));
+
+        return redirect('/events');
     }
 
     /**
@@ -48,7 +62,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.event', compact('event'));
     }
 
     /**
@@ -59,7 +73,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -71,7 +85,21 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'info' => 'required'
+        ]);
+
+        $event->update(request([
+            'city',
+            'address',
+            'info',
+            'date'
+        ]));
+
+        return redirect('/events/' . $event->id);
     }
 
     /**
@@ -82,6 +110,6 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
     }
 }

@@ -5,6 +5,16 @@ html,body {
     font-family: 'Lato', sans-serif;
 }
 
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1;
+}
+
 .donor-navbar {
     .navbar-brand {
         img {

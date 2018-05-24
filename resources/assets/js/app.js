@@ -38,11 +38,13 @@ const app = new Vue({
                 {
                     key: 'date',
                     label: 'Datum',
-                    sortable: true
+                    class: 'text-center',
+                    sortable: true,
+                    formatter: 'dateFormat'
                 },
             ],
-            eventsPage: 2,
-            perPage: 1
+            eventsPage: 1,
+            perPage: 10
         }
     },
     methods: {
@@ -50,6 +52,22 @@ const app = new Vue({
             axios.post('/logout').
             then(response => {
                 location.reload()
+            }).
+            catch(function (error) {
+                console.log("An error ocurred -> " + error);
+            });
+        },
+        dateFormat (value) {
+            let date = new Date(value);
+            return date.toLocaleDateString();
+        },
+        eventClick(record) {
+            window.location = "/events/" + record.id;
+        },
+        deleteModel(name, id) {
+            axios.delete('/' + name + '/' +  id).
+            then(response => {
+                window.location = "/events/"
             }).
             catch(function (error) {
                 console.log("An error ocurred -> " + error);
