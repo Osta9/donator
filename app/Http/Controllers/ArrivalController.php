@@ -14,7 +14,9 @@ class ArrivalController extends Controller
      */
     public function index()
     {
-        //
+        $arrivals = Arrival::All();
+
+        return view('arrivals.index', compact('arrivals'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ArrivalController extends Controller
      */
     public function create()
     {
-        //
+        return view('arrivals.create');
     }
 
     /**
@@ -35,7 +37,32 @@ class ArrivalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'date' => 'required',
+            'donator_id' => 'required',
+            'doctor_id' => 'required',
+            'assistant_id' => 'required',
+            'hemoglobin' => 'required',
+            'blood_sys' => 'required',
+            'blood_dia' => 'required',
+            'accepted' => 'required',
+            'reason' => 'required'
+        ]);
+
+        Arrival::create(request([
+            'date',
+            'donator_id',
+            'doctor_id',
+            'assistant_id',
+            'hemoglobin',
+            'blood_sys',
+            'blood_dia',
+            'accepted',
+            'reason'
+        ]));
+
+        return redirect('/arrivals');
     }
 
     /**
@@ -46,7 +73,7 @@ class ArrivalController extends Controller
      */
     public function show(Arrival $arrival)
     {
-        //
+        return view('arrivals.arrival', compact('arrival'));
     }
 
     /**
@@ -57,7 +84,7 @@ class ArrivalController extends Controller
      */
     public function edit(Arrival $arrival)
     {
-        //
+        return view('arrivals.edit', compact('arrival'));
     }
 
     /**
@@ -69,7 +96,32 @@ class ArrivalController extends Controller
      */
     public function update(Request $request, Arrival $arrival)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'date' => 'required',
+            'donator_id' => 'required',
+            'doctor_id' => 'required',
+            'assistant_id' => 'required',
+            'hemoglobin' => 'required',
+            'blood_sys' => 'required',
+            'blood_dia' => 'required',
+            'accepted' => 'required',
+            'reason' => 'required',
+        ]);
+
+        $arrival->update(request([
+            'date',
+            'donator_id',
+            'doctor_id',
+            'assistant_id',
+            'hemoglobin',
+            'blood_sys',
+            'blood_dia',
+            'accepted',
+            'reason'
+        ]));
+
+        return redirect('/arrivals/' . $arrival->id);
     }
 
     /**
@@ -80,6 +132,6 @@ class ArrivalController extends Controller
      */
     public function destroy(Arrival $arrival)
     {
-        //
+        $arrival->delete();
     }
 }

@@ -22,3 +22,7 @@ Route::resource('events', 'EventController');
 
 /* Donators */
 Route::resource('donators', 'DonatorController');
+
+/* Arrivals */
+Route::resource('arrivals', 'ArrivalController');
+
