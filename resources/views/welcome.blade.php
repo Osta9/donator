@@ -19,37 +19,24 @@
                     </b-col>
                     <b-col cols="12">
                         <p class="text-center mt-5 p-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente eius ad ullam harum corporis. Optio perspiciatis facere veniam eius, distinctio laboriosam magni at aliquid aperiam architecto molestias, debitis culpa! Porro, incidunt eligendi expedita eum mollitia officia similique totam itaque, aperiam nam modi sint tempore esse deserunt. Quae dicta, atque voluptates.</p>
-                        <hr class="hr-danger">
+                        <hr class="hr-red">
                     </b-col>
                 </b-row>
                 <b-row class="col-12 mt-4 flex-center">
                     <h4 class="col-12 text-center my-4"> Nadolazeće akcije darivanja krvi</h4>
+                    @foreach($events as $event)
                     <b-col cols="12" md="4">
                         <b-card
-                            text-variant="red"
-                            header="Raštani"
-                            class="text-center">
-                            <p class="card-text">25.25.2010</p>
+                            header="{{$event->city}}"
+                            class="text-center event-card my-md-2">
+                            <p class="card-text">
+                                {{$event->info}}<br/>
+                                {{$event->address}}<br/>
+                                {{$event->date->diffForHumans()}}
+                            </p>
                         </b-card>
                     </b-col>
-
-                    <b-col cols="12" md="4">
-                        <b-card
-                            text-variant="red"
-                            header="Raštani"
-                            class="text-center">
-                            <p class="card-text">25.25.2010</p>
-                        </b-card>
-                    </b-col>
-
-                    <b-col cols="12" md="4">
-                        <b-card
-                            text-variant="red"
-                            header="Raštani"
-                            class="text-center">
-                            <p class="card-text">25.25.2010</p>
-                        </b-card>
-                    </b-col>
+                    @endforeach
                     <h3 class="my-5 col-12 text-center">TOP DONATORI</h3>
                     <b-list-group class="col-12">
                         <b-list-group-item class="d-flex justify-content-between align-items-center">

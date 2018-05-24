@@ -12,11 +12,34 @@ html,body {
         }
     }
     .nav-item {
-        + .nav-item {
-            margin-left: 20px;
-        }
         &.active {
             border-bottom: 1px solid $donor;
+        }
+    }
+    .navbar-toggler {
+        position: absolute;
+        right: 0;
+        top: 13px;
+        outline: none !important;
+        border: none !important;
+        .toggle-bar {
+            display: block;
+            height: 3px;
+            width: 30px;
+            background: $donor;
+            + .toggle-bar {
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .donor-navbar {
+        .nav-item {
+            + .nav-item {
+                margin-left: 20px;
+            }
         }
     }
 }
@@ -49,4 +72,16 @@ a {
 
 #footer {
     background: transparent;
+    footer {
+        font-size:0.8rem;
+    }
+}
+
+.page-item.active .page-link {
+    background: $donor;
+    border-color: transparent;
+    color: white!important;
+    &:focus {
+        box-shadow: 0!important;
+    }
 }

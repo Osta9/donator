@@ -21,7 +21,11 @@
     <b-container>
         <b-navbar toggleable="md" type="light" class="donor-navbar">
 
-            <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+            <b-navbar-toggle target="nav_collapse">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </b-navbar-toggle>
 
             <b-navbar-brand href="#" class="flex-center">
                 <img class="img-fluid" src="/../img/brand.png">
@@ -44,6 +48,14 @@
                             Registracija
                         </b-nav-item>
                     @endguest
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                            <b-nav-item href="/events"
+                                        class="{{ strpos(Route::currentRouteName(), 'events') === 0 ? 'active' : null }}">
+                                Događaji
+                            </b-nav-item>
+                        @endif
+                    @endauth
                 </b-navbar-nav>
                 @auth
                     <b-navbar-nav class="ml-auto">
@@ -61,7 +73,7 @@
         </b-navbar>
     </b-container>
 
-    <b-container fluid id="main" class="my-4">
+    <b-container fluid id="main" class="my-4 p-0">
         @yield('content')
     </b-container>
 

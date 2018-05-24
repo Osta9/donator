@@ -18,6 +18,33 @@ Vue.use(BootstrapVue);
  */
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            eventFields: [
+                {
+                    key: 'city',
+                    label: 'Grad',
+                    sortable: true
+                },
+                {
+                    key: 'address',
+                    label: 'Adresa',
+                    sortable: false
+                },
+                {
+                    key: 'info',
+                    sortable: false
+                },
+                {
+                    key: 'date',
+                    label: 'Datum',
+                    sortable: true
+                },
+            ],
+            eventsPage: 2,
+            perPage: 1
+        }
+    },
     methods: {
         logout: function () {
             axios.post('/logout').

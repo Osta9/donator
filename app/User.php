@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin()
+    {
+        return $this->account_type == 'admin';
+    }
+
     public function donator()
     {
         return $this->hasOne('App\Donator');
