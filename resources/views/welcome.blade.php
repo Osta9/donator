@@ -1,95 +1,67 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<b-container>
+    <b-row class="flex-center">
+        <h1 class="mb-5 text-nowrap">SUSTAV ZA TRANSFUZIOLOGIJU</h1>
+        <b-row>
+            <b-col cols="10" md="7">
+                <b-img src="/../img/blooddonation.jpg" fluid alt="Responsive image" />
+            </b-col>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+            <b-col cols="10" md="5" class="d-flex justify-content-sm-center justify-content-end">
+                <b-img src="/../img/chart.png" fluid alt="Responsive image" />
+            </b-col>
+            <b-col cols="12">
+                  <p class="text-center mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente eius ad ullam harum corporis. Optio perspiciatis facere veniam eius, distinctio laboriosam magni at aliquid aperiam architecto molestias, debitis culpa! Porro, incidunt eligendi expedita eum mollitia officia similique totam itaque, aperiam nam modi sint tempore esse deserunt. Quae dicta, atque voluptates.</p>
+                   <hr class="hr-danger">
+            </b-col>
+        </b-row>
+        <b-row id="naslovna" class="col-12 mt-4 flex-center">
+            <h4 class="col-12 text-center my-4"> Nadolazeće akcije darivanja krvi</h4>  
+            <b-col cols="4">
+            <b-card
+                text-variant="red"
+                header="Raštani"
+                class="text-center">
+            <p class="card-text">25.25.2010</p>
+            </b-card>
+            </b-col>
+            
+            <b-col cols="4">
+            <b-card
+                text-variant="red"
+                header="Raštani"
+                class="text-center">
+            <p class="card-text">25.25.2010</p>
+            </b-card>
+            </b-col>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+            <b-col cols="4">
+            <b-card
+                text-variant="red"
+                header="Raštani"
+                class="text-center">
+            <p class="card-text">25.25.2010</p>
+            </b-card>
+            </b-col>
+            <h3 class="my-5 col-12 text-center">TOP DONATORI</h3>
+            <b-list-group class="col-12">
+              <b-list-group-item class="d-flex justify-content-between align-items-center">
+                Ivan Ostojić
+                <b-badge variant="danger" pill>141</b-badge>
+              </b-list-group-item>
+              <b-list-group-item class="d-flex justify-content-between align-items-center">
+                Mario Rajič
+                <b-badge variant="danger" pill>2</b-badge>
+              </b-list-group-item>
+              <b-list-group-item class="d-flex justify-content-between align-items-center">
+                Robert Rozić
+                <b-badge variant="danger" pill>1</b-badge>
+              </b-list-group-item>
+            </b-list-group>
+        </b-row>
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    </b-row>
+</b-container>
+@endsection
