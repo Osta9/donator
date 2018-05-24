@@ -20,6 +20,36 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
+            donatorFields: [
+                {
+                    key: 'first_name',
+                    label: 'Ime',
+                    sortable: true
+                },
+                {
+                    key: 'last_name',
+                    label: 'Prezime',
+                    sortable: true
+                },
+                {
+                    key: 'address',
+                    label: 'Adresa',
+                    sortable: false
+                },
+                {
+                    key: 'phone',
+                    label: 'Telefon',
+                    class: 'text-center',
+                    sortable: false
+                },
+                {
+                    key: 'birth_date',
+                    label: 'Datum rođenja',
+                    class: 'text-center',
+                    sortable: false,
+                    formatter: 'dateFormat'
+                }
+            ],
             eventFields: [
                 {
                     key: 'city',
@@ -44,6 +74,7 @@ const app = new Vue({
                 },
             ],
             eventsPage: 1,
+            donatorsPage: 1,
             perPage: 10
         }
     },
@@ -64,10 +95,13 @@ const app = new Vue({
         eventClick(record) {
             window.location = "/events/" + record.id;
         },
-        deleteModel(name, id) {
-            axios.delete('/' + name + '/' +  id).
+        donatorClick(record) {
+            window.location = "/donators/" + record.id;
+        },
+        deleteModel(route, id) {
+            axios.delete('/' + route + '/' +  id).
             then(response => {
-                window.location = "/events/"
+                window.location = "/" + route + "/"
             }).
             catch(function (error) {
                 console.log("An error ocurred -> " + error);

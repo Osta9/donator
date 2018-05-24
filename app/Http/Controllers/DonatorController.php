@@ -14,7 +14,9 @@ class DonatorController extends Controller
      */
     public function index()
     {
-        //
+        $donators = Donator::All();
+
+        return view('donators.index', compact('donators'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DonatorController extends Controller
      */
     public function create()
     {
-        //
+        return view('donators.create');
     }
 
     /**
@@ -35,7 +37,26 @@ class DonatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'blood_type' => 'required|string|max:255',
+            'birth_date' => 'required'
+        ]);
+
+        Donator::create(request([
+            'first_name',
+            'last_name',
+            'address',
+            'phone',
+            'blood_type',
+            'birth_date'
+        ]));
+
+        return redirect('/donators');
     }
 
     /**
@@ -46,7 +67,7 @@ class DonatorController extends Controller
      */
     public function show(Donator $donator)
     {
-        //
+        return view('donators.donator', compact('donator'));
     }
 
     /**
@@ -57,7 +78,7 @@ class DonatorController extends Controller
      */
     public function edit(Donator $donator)
     {
-        //
+        return view('donators.edit', compact('donator'));
     }
 
     /**
@@ -69,7 +90,26 @@ class DonatorController extends Controller
      */
     public function update(Request $request, Donator $donator)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'blood_type' => 'required|string|max:255',
+            'birth_date' => 'required'
+        ]);
+
+        $donator->update(request([
+            'first_name',
+            'last_name',
+            'address',
+            'phone',
+            'blood_type',
+            'birth_date'
+        ]));
+
+        return redirect('/donators/' . $donator->id);
     }
 
     /**
@@ -80,6 +120,6 @@ class DonatorController extends Controller
      */
     public function destroy(Donator $donator)
     {
-        //
+        $donator->delete();
     }
 }

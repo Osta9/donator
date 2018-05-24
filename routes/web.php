@@ -19,3 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Events */
 Route::resource('events', 'EventController');
+
+/* Donators */
+Route::resource('donators', 'DonatorController');

@@ -50,6 +50,10 @@
                     @endguest
                     @auth
                         @if(Auth::user()->isAdmin())
+                            <b-nav-item href="/donators"
+                                        class="{{ strpos(Route::currentRouteName(), 'donators') === 0 ? 'active' : null }}">
+                                Donatori
+                            </b-nav-item>
                             <b-nav-item href="/events"
                                         class="{{ strpos(Route::currentRouteName(), 'events') === 0 ? 'active' : null }}">
                                 Događaji
