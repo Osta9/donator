@@ -2,16 +2,24 @@
 
 @section('content')
     <b-container>
-        <a href="/donators/create">
-            <b-btn variant="donor" class="mb-2 align float-right">
-                Novi donator
-            </b-btn>
-        </a>
-        <b-table striped hover :items="{{$donators}}"
+        <b-row class="d-flex justify-content-between">
+            <b-col cols="6" md="3" class="donor-form">
+                <b-form-input v-model="filter" placeholder="Type to Search" />
+            </b-col>
+            <b-col cols="6" md="3">
+                <a href="/donators/create">
+                    <b-btn variant="donor" class="mb-2 w-100">
+                        Novi donator
+                    </b-btn>
+                </a>
+            </b-col>
+        </b-row>
+
+        <b-table striped hover stacked="md" :items="filterDonators({{$donators}})"
                  :fields="donatorFields" :current-page="donatorsPage" :per-page="perPage"
                  @row-clicked="donatorClick">
         </b-table>
-        <b-pagination align="right" :total-rows="{{$donators->count()}}" v-model="donatorsPage" :per-page="perPage">
+        <b-pagination align="right" :total-rows="filterDonators({{$donators}}).length" v-model="donatorsPage" :per-page="perPage">
         </b-pagination>
     </b-container>
 @endsection

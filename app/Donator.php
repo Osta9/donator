@@ -8,7 +8,7 @@ class Donator extends Model
 {
     protected $fillable = [
         'user_id', 'first_name', 'last_name', 'birth_date', 'address',
-        'phone', 'blood_type'
+        'phone', 'blood_type_id'
     ];
 
     protected $dates = ['birth_date'];
@@ -22,6 +22,11 @@ class Donator extends Model
     public function arrivals()
     {
         return $this->hasMany('App\Arrival');
+    }
+
+    public function blood_type()
+    {
+        return $this->belongsTo('App\BloodType');
     }
 
 }

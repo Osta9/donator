@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1 class="text-center">Uredi donatori</h1>
+                <h1 class="text-center">Uredi donatora</h1>
                 <form method="POST" action="/donators/{{$donator->id}}" class="donor-form">
                     @csrf
                     {{ method_field('PUT') }}

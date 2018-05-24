@@ -23,7 +23,7 @@ class DonatorsTableSeeder extends Seeder
                 'birth_date' => $faker->date(),
                 'address' => $faker->address(),
                 'phone' => $faker->phoneNumber(),
-                'blood_type' => $faker->randomElement(['A+', 'B+','AB+', 'B-','A-', 'AB-','0-', '0+']),
+                'blood_type' => 1
             ]);
         }
     }

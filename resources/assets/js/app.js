@@ -48,7 +48,13 @@ const app = new Vue({
                     class: 'text-center',
                     sortable: false,
                     formatter: 'dateFormat'
-                }
+                },
+                {
+                    key: 'blood_type',
+                    label: 'Krvna grupa',
+                    class: 'text-center',
+                    sortable: false
+                },
             ],
             eventFields: [
                 {
@@ -75,7 +81,8 @@ const app = new Vue({
             ],
             eventsPage: 1,
             donatorsPage: 1,
-            perPage: 10
+            perPage: 10,
+            filter: ''
         }
     },
     methods: {
@@ -105,6 +112,12 @@ const app = new Vue({
             }).
             catch(function (error) {
                 console.log("An error ocurred -> " + error);
+            });
+        },
+        filterDonators: function (items) {
+            return items.filter(item => {
+                return item.first_name.toLowerCase().includes(this.filter.toLowerCase()) ||
+                    item.last_name.toLowerCase().includes(this.filter.toLowerCase())
             });
         }
     }
