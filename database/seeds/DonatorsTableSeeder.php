@@ -24,7 +24,7 @@ class DonatorsTableSeeder extends Seeder
                 'birth_date' => $faker->date(),
                 'address' => $faker->address(),
                 'phone' => $faker->phoneNumber(),
-                'blood_type' => $faker->randomElement(BloodType::pluck('type')->toArray()),
+                'blood_type_id' => $faker->randomElement(BloodType::pluck('id')->toArray()),
             ]);
         }
     }

@@ -16,6 +16,7 @@ class CreateBloodTypesTable extends Migration
         Schema::create('blood_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
+            $table->string('img');
             $table->timestamps();
         });
     }

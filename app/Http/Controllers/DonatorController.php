@@ -14,7 +14,7 @@ class DonatorController extends Controller
      */
     public function index()
     {
-        $donators = Donator::All();
+        $donators = Donator::with('blood_type')->get();
 
         return view('donators.index', compact('donators'));
     }

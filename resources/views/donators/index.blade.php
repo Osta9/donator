@@ -18,6 +18,10 @@
         <b-table striped hover stacked="md" :items="filterDonators({{$donators}})"
                  :fields="donatorFields" :current-page="donatorsPage" :per-page="perPage"
                  @row-clicked="donatorClick">
+            <template slot="blood_type" slot-scope="data">
+                <img :src="'/../img/' + data.item.blood_type.img + '.png'"
+                     class="img-fluid blood-type">
+            </template>
         </b-table>
         <b-pagination align="right" :total-rows="filterDonators({{$donators}}).length" v-model="donatorsPage" :per-page="perPage">
         </b-pagination>
