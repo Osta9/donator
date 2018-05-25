@@ -30,8 +30,9 @@ class HomeController extends Controller
     public function index()
     {
 
+        $donations = Dose::with('arrival')->get();
         $blood_types = BloodType::withCount('doses')->get();
-        return view('home', compact(['blood_types']));
+        return view('home', compact(['blood_types', 'donations']));
     }
 
     /**

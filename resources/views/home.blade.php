@@ -24,7 +24,17 @@
                 @endforeach
             </b-row>
         @else
-
+            <h2 class="text-center">Moje donacije</h2>
+            <h4 class="flex-center">TODO</h4>
+            {{--@foreach($donations as $donation)
+                @if($donation->arrival->donator_id == Auth::user()->id)
+                    <b-row>
+                        <b-col cols="4">
+                        {{$donation->arrival->date->toDateString()}}
+                        </b-col>
+                    </b-row>
+                @endif
+            @endforeach--}}
         @endif
     </b-container>
 @endsection
