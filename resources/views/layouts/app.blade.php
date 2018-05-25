@@ -58,6 +58,10 @@
                                         class="{{ strpos(Route::currentRouteName(), 'events') === 0 ? 'active' : null }}">
                                 Događaji
                             </b-nav-item>
+                            <b-nav-item href="/arrivals"
+                                        class="{{ strpos(Route::currentRouteName(), 'arrivals') === 0 ? 'active' : null }}">
+                                Dolasci
+                            </b-nav-item>
                         @endif
                     @endauth
                 </b-navbar-nav>

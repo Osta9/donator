@@ -79,7 +79,43 @@ const app = new Vue({
                     formatter: 'dateFormat'
                 },
             ],
+            arrivalFields: [
+                {
+                    key: 'date',
+                    label: 'Datum',
+                    class: 'text-center',
+                    formatter: 'dateFormat',
+                    sortable: false
+                },
+                {
+                    key: 'hemoglobin',
+                    label: 'Hemoglobin',
+                    sortable: false
+                },
+                {
+                    key: 'blood_sys',
+                    label: 'Sistolički tlak',
+                    sortable: false
+                },
+                {
+                    key: 'blood_dia',
+                    label: 'Dijastolički tlak',
+                    sortable: false
+                },
+                                {
+                    key: 'accepted',
+                    label: 'Prihvacen',
+                    sortable: false
+                },
+                {
+                    key: 'reason',
+                    label: 'Razlog',
+                    class: 'text-center',
+                    sortable: false
+                },
+            ],
             eventsPage: 1,
+            arrivalsPage: 1,
             donatorsPage: 1,
             perPage: 10,
             filter: ''
@@ -104,6 +140,9 @@ const app = new Vue({
         },
         donatorClick(record) {
             window.location = "/donators/" + record.id;
+        },
+        arrivalClick(record) {
+            window.location = "/arrivals/" + record.id;
         },
         deleteModel(route, id) {
             axios.delete('/' + route + '/' +  id).
