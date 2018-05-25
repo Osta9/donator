@@ -76,14 +76,14 @@
                     </div>
 
                     <div class="form-group">
-                        <input id="blood_type" type="text" placeholder="Krvna grupa"
-                               class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}"
-                               name="blood_type" value="{{ old('blood_type') }}" required autofocus>
-                        @if ($errors->has('blood_type'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('blood_type') }}</strong>
-                            </span>
-                        @endif
+                        <select id="blood_type" type="text"
+                                placeholder="Krvna grupa"
+                                class="form-control"
+                                name="blood_type_id" required autofocus>
+                            @foreach($blood_types as $bt)
+                                <option value="{{$bt->id}}">{{$bt->type}}</option>>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">

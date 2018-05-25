@@ -42,8 +42,9 @@ class DonatorController extends Controller
     public function create()
     {
         $users = User::all();
+        $blood_types = BloodType::All();
 
-        return view('donators.create', compact('users'));
+        return view('donators.create', compact(['users', 'blood_types']));
     }
 
     /**
@@ -54,6 +55,8 @@ class DonatorController extends Controller
      */
     public function store(Request $request)
     {
+        $blood_types = BloodType::All();
+
         // Validate request
         $this->validate(request(), [
             'first_name' => 'required|string|max:255',
@@ -65,6 +68,7 @@ class DonatorController extends Controller
         ]);
 
         Donator::create(request([
+            'user_id',
             'first_name',
             'last_name',
             'address',
@@ -120,6 +124,7 @@ class DonatorController extends Controller
         ]);
 
         $donator->update(request([
+            'user_id',
             'first_name',
             'last_name',
             'address',
