@@ -62,6 +62,10 @@
                                         class="{{ strpos(Route::currentRouteName(), 'arrivals') === 0 ? 'active' : null }}">
                                 Dolasci
                             </b-nav-item>
+                            <b-nav-item href="/employees"
+                                        class="{{ strpos(Route::currentRouteName(), 'employees') === 0 ? 'active' : null }}">
+                                Zaposlenici
+                            </b-nav-item>
                         @endif
                     @endauth
                 </b-navbar-nav>

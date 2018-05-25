@@ -14,7 +14,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::All();
+
+        return view('employees.index', compact('employees'));
     }
 
     /**
@@ -24,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employees.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate request
+        $this->validate(request(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'title' => 'required'
+        ]);
+
+        Employee::create(request([
+            'first_name',
+            'last_name',
+            'title'
+        ]));
+
+        return redirect('/employees');
     }
 
     /**
@@ -47,6 +62,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         //
+        return view('employees.employee', compact('employee'));
     }
 
     /**
@@ -57,7 +73,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit', compact('employee'));
+
     }
 
     /**
@@ -69,7 +86,19 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $this->validate(request(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'title' => 'required'
+        ]);
+
+        $employee->update(request([
+            'first_name',
+            'last_name',
+            'title'
+        ]));
+
+        return redirect('/employees/' . $employee->id);
     }
 
     /**
@@ -80,6 +109,6 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+                $employee->delete();
     }
 }

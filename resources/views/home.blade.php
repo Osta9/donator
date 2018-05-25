@@ -36,7 +36,7 @@
         </b-card>
         <b-card title="112" class="col-6 col-md-3"
                 img-fluid="yes"
-                img-src="/../img/op.png"
+                img-src="/../img/0p.png"
                 img-alt="Img"
                 img-top>
     </b-card-group>
@@ -62,7 +62,7 @@
         </b-card>
         <b-card title="112" class="col-6 col-md-3"
                 img-fluid="yes"
-                img-src="/../img/on.png"
+                img-src="/../img/0n.png"
                 img-alt="Img"
                 img-top>
     </b-card-group>

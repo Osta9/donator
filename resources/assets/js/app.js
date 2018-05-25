@@ -114,9 +114,27 @@ const app = new Vue({
                     sortable: false
                 },
             ],
+            employeeFields: [
+                {
+                    key: 'first_name',
+                    label: 'Ime',
+                    sortable: true
+                },
+                {
+                    key: 'last_name',
+                    label: 'Prezime',
+                    sortable: true
+                },
+                {
+                    key: 'title',
+                    label: 'Titula',
+                    sortable: false
+                },
+            ],
             eventsPage: 1,
             arrivalsPage: 1,
             donatorsPage: 1,
+            employeesPage: 1,
             perPage: 10,
             filter: ''
         }
@@ -144,6 +162,9 @@ const app = new Vue({
         arrivalClick(record) {
             window.location = "/arrivals/" + record.id;
         },
+        employeeClick(record) {
+            window.location = "/employees/" + record.id;
+        },
         deleteModel(route, id) {
             axios.delete('/' + route + '/' +  id).
             then(response => {
@@ -154,6 +175,12 @@ const app = new Vue({
             });
         },
         filterDonators: function (items) {
+            return items.filter(item => {
+                return item.first_name.toLowerCase().includes(this.filter.toLowerCase()) ||
+                    item.last_name.toLowerCase().includes(this.filter.toLowerCase())
+            });
+        },
+        filterEmployees: function (items) {
             return items.filter(item => {
                 return item.first_name.toLowerCase().includes(this.filter.toLowerCase()) ||
                     item.last_name.toLowerCase().includes(this.filter.toLowerCase())

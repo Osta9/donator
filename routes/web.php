@@ -26,3 +26,6 @@ Route::resource('donators', 'DonatorController');
 /* Arrivals */
 Route::resource('arrivals', 'ArrivalController');
 
+/* Employees */
+Route::resource('employees', 'EmployeeController');
+
