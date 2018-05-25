@@ -19,6 +19,45 @@
                     </div>
 
                     <div class="form-group">
+                        <select name="donator_id" class="w-100" required>
+                            <option value="0">
+                                Molimo odaberite donatora
+                            </option>
+                            @foreach($donators as $donator)
+                                <option value="{{$donator->id}}">
+                                    {{$donator->first_name . ' ' . $donator->last_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="doctor_id" class="w-100" required>
+                            <option value="0">
+                                Molimo odaberite ljecnika
+                            </option>
+                            @foreach($doctors as $d)
+                                <option value="{{$d->id}}">
+                                    {{$d->first_name . ' ' . $d->last_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="assistant_id" class="w-100" required>
+                            <option value="0">
+                                Molimo odaberite asistenta
+                            </option>
+                            @foreach($staff as $s)
+                                <option value="{{$s->id}}">
+                                    {{$s->first_name . ' ' . $s->last_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <input id="hemoglobin" type="text" placeholder="Hemoglobin"
                                class="form-control{{ $errors->has('hemoglobin') ? ' is-invalid' : '' }}"
                                name="hemoglobin" value="{{ old('hemoglobin') }}" required autofocus>
@@ -28,9 +67,9 @@
                             </span>
                         @endif
                     </div>
-                    
+
                     <div class="form-group">
-                        <input id="blood_sys" type="textarea" placeholder="Sistolički tlak"
+                        <input id="blood_sys" type="text" placeholder="Sistolički tlak"
                                class="form-control{{ $errors->has('blood_sys') ? ' is-invalid' : '' }}"
                                name="blood_sys" value="{{ old('blood_sys') }}" required autofocus>
                         @if ($errors->has('blood_sys'))
@@ -51,23 +90,17 @@
                         @endif
                     </div>
 
-                    <!--OVDJE TREBA CHECKBOX ZA PRIHVACEN ILI NE -->
-                    <div class="form-group">
-                        <input id="accepted" type="date" placeholder="Prihvaćen"
-                               class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}"
-                               name="accepted" value="{{ old('accepted') }}" required autofocus>
-                        @if ($errors->has('accepted'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('accepted') }}</strong>
-                            </span>
-                        @endif
+                    <div class="form-group flex-center flex-column">
+                        <label>Prihvaćen</label>
+                        <input id="accepted" type="checkbox" placeholder="Prihvaćen"
+                               class="form-control"
+                               name="accepted" autofocus>
                     </div>
-                    
-<!--                     Ovo polje je nullable pa mozda da se hide-a ako je checkbox strihiran a valjalo bi i da je textarea al molim te nemoj komplicirat s ovim nego ostavi da se smije poslat prazno i gotovo
--->                    <div class="form-group">
-                        <input id="reason" type="textarea" placeholder="Razlog"
+
+                    <div class="form-group">
+                        <input id="reason" type="textarea" placeholder="Napomena"
                                class="form-control{{ $errors->has('reason') ? ' is-invalid' : '' }}"
-                               name="reason" value="{{ old('reason') }}" required autofocus>
+                               name="reason" value="{{ old('reason') }}" autofocus>
                         @if ($errors->has('reason'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('reason') }}</strong>

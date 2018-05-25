@@ -25,7 +25,7 @@
             </b-col>
             <b-col md="6" class="text-center my-2">
                 <b>Krvna grupa</b><br/>
-                {{$donator->phone}}
+                {{$donator->blood_type->type}}
             </b-col>
             <b-col class="my-4 text-center">
                 <a href="{{ url('donators/' . $donator->id . '/edit')}}">

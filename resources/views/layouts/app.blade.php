@@ -27,17 +27,13 @@
                 <span class="toggle-bar"></span>
             </b-navbar-toggle>
 
-            <b-navbar-brand href="#" class="flex-center">
+            <b-navbar-brand href="{{ route('welcome') }}" class="flex-center">
                 <img class="img-fluid" src="/../img/brand.png">
             </b-navbar-brand>
 
             <b-collapse is-nav id="nav_collapse">
 
                 <b-navbar-nav>
-                    <b-nav-item href="{{ route('welcome') }}"
-                                class="{{ strpos(Route::currentRouteName(), 'welcome') === 0 ? 'active' : null }}">
-                        Naslovnica
-                    </b-nav-item>
                     @guest
                         <b-nav-item href="{{ route('login') }}"
                                     class="{{ strpos(Route::currentRouteName(), 'login') === 0 ? 'active' : null }}">
@@ -65,6 +61,10 @@
                             <b-nav-item href="/employees"
                                         class="{{ strpos(Route::currentRouteName(), 'employees') === 0 ? 'active' : null }}">
                                 Zaposlenici
+                            </b-nav-item>
+                            <b-nav-item href="/doses"
+                                        class="{{ strpos(Route::currentRouteName(), 'doses') === 0 ? 'active' : null }}">
+                                Doze
                             </b-nav-item>
                         @endif
                     @endauth

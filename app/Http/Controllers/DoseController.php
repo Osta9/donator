@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Arrival;
 use App\Dose;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DoseController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        $this->middleware('admin');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,10 @@ class DoseController extends Controller
      */
     public function index()
     {
-        //
+        $doses = Dose::with('arrival')->get();
+
+        return view('doses.index', compact('doses'));
+
     }
 
     /**
@@ -22,9 +40,15 @@ class DoseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $dose = Dose::create([
+            'arrival_id' => $id,
+            'blood_type_id' => Arrival::find($id)->donator->blood_type_id
+        ]);
+
+        return redirect('/doses/' . $dose->id);
+
     }
 
     /**
@@ -35,7 +59,7 @@ class DoseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/doses/');
     }
 
     /**
@@ -46,7 +70,7 @@ class DoseController extends Controller
      */
     public function show(Dose $dose)
     {
-        //
+        return view('doses.dose', compact('dose'));
     }
 
     /**
@@ -57,7 +81,7 @@ class DoseController extends Controller
      */
     public function edit(Dose $dose)
     {
-        //
+        return view('events.dose', compact('dose'));
     }
 
     /**
@@ -69,7 +93,39 @@ class DoseController extends Controller
      */
     public function update(Request $request, Dose $dose)
     {
-        //
+
+            $dose->update(request([
+                'processed',
+                'donated'
+            ]));
+
+        return redirect('/doses/' . $dose->id);
+    }
+
+
+    public function process($id)
+    {
+        $dose = Dose::find($id);
+
+        if($dose) {
+            $dose->processed =  1;
+            $dose->save();
+        }
+
+        return redirect('/doses/' . $dose->id);
+    }
+
+    public function donate($id)
+    {
+        $dose = Dose::find($id);
+
+        if($dose) {
+            $dose->donated =  1;
+            $dose->donation_date = Carbon::now();
+            $dose->save();
+        }
+
+        return redirect('/doses/' . $dose->id);
     }
 
     /**
@@ -80,6 +136,6 @@ class DoseController extends Controller
      */
     public function destroy(Dose $dose)
     {
-        //
+        $dose->delete();
     }
 }

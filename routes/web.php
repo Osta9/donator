@@ -29,3 +29,10 @@ Route::resource('arrivals', 'ArrivalController');
 /* Employees */
 Route::resource('employees', 'EmployeeController');
 
+/* Doses */
+Route::resource('doses', 'DoseController');
+Route::get('/doses/{id}/process', 'DoseController@process');
+Route::get('/doses/{id}/donate', 'DoseController@donate');
+Route::get('/doses/create/{id}', 'DoseController@create');
+
+

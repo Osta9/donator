@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Arrival;
+use App\Donator;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class ArrivalController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        $this->middleware('admin');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,7 @@ class ArrivalController extends Controller
      */
     public function index()
     {
-        $arrivals = Arrival::All();
+        $arrivals = Arrival::with('donator')->get();
 
         return view('arrivals.index', compact('arrivals'));
     }
@@ -26,7 +41,11 @@ class ArrivalController extends Controller
      */
     public function create()
     {
-        return view('arrivals.create');
+        $donators = Donator::all();
+        $doctors = Employee::where('title', 'doktor')->get();
+        $staff = Employee::where('title', 'osoblje')->get();
+
+        return view('arrivals.create', compact('doctors', 'staff', 'donators'));
     }
 
     /**
@@ -45,12 +64,10 @@ class ArrivalController extends Controller
             'assistant_id' => 'required',
             'hemoglobin' => 'required',
             'blood_sys' => 'required',
-            'blood_dia' => 'required',
-            'accepted' => 'required',
-            'reason' => 'required'
+            'blood_dia' => 'required'
         ]);
 
-        Arrival::create(request([
+        $arrival = Arrival::create(request([
             'date',
             'donator_id',
             'doctor_id',
@@ -61,6 +78,10 @@ class ArrivalController extends Controller
             'accepted',
             'reason'
         ]));
+
+        if($request->accepted == 'on') {
+            return redirect('/doses/create/'.$arrival->id);
+        }
 
         return redirect('/arrivals');
     }

@@ -29,4 +29,9 @@ class Donator extends Model
         return $this->belongsTo('App\BloodType');
     }
 
+    public function doses()
+    {
+        return $this->hasManyThrough('App\Dose', 'App\Arrival');
+    }
+
 }

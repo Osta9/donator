@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dose extends Model
 {
     protected $fillable = [
-        'arrival_id', 'processed', 'donated'
+        'arrival_id', 'blood_type_id', 'processed', 'donated'
     ];
 
     public function arrival()
@@ -18,5 +18,10 @@ class Dose extends Model
     public function donator()
     {
         return $this->arrival->donator();
+    }
+
+    public function blood_type()
+    {
+        return $this->belongsTo('App\BloodType');
     }
 }

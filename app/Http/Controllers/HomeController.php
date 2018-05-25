@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Donator;
 use Illuminate\Http\Request;
 use App\Event;
 use Carbon\Carbon;
@@ -35,6 +36,7 @@ class HomeController extends Controller
      */
     public function welcome()
     {
+        //$top = Donator::all()->count()
         $events = Event::whereDate('date', '>', Carbon::now())->get();
         return view('welcome', compact('events'));
     }

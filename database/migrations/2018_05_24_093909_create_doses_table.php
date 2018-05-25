@@ -16,8 +16,10 @@ class CreateDosesTable extends Migration
         Schema::create('doses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('arrival_id');
+            $table->integer('blood_type_id');
             $table->boolean('processed')->default(false);
             $table->boolean('donated')->default(false);
+            $table->date('donation_date')->nullable();
             $table->timestamps();
         });
     }

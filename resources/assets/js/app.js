@@ -81,6 +81,16 @@ const app = new Vue({
             ],
             arrivalFields: [
                 {
+                    key: 'donator.first_name',
+                    label: 'Ime',
+                    sortable: true
+                },
+                {
+                    key: 'donator.last_name',
+                    label: 'Prezime',
+                    sortable: true
+                },
+                {
                     key: 'date',
                     label: 'Datum',
                     class: 'text-center',
@@ -90,29 +100,27 @@ const app = new Vue({
                 {
                     key: 'hemoglobin',
                     label: 'Hemoglobin',
+                    class: 'text-center',
                     sortable: false
                 },
                 {
                     key: 'blood_sys',
                     label: 'Sistolički tlak',
+                    class: 'text-center',
                     sortable: false
                 },
                 {
                     key: 'blood_dia',
                     label: 'Dijastolički tlak',
-                    sortable: false
-                },
-                                {
-                    key: 'accepted',
-                    label: 'Prihvacen',
-                    sortable: false
-                },
-                {
-                    key: 'reason',
-                    label: 'Razlog',
                     class: 'text-center',
                     sortable: false
                 },
+                {
+                    key: 'accepted',
+                    label: 'Prihvacen',
+                    class: 'text-center',
+                    sortable: false
+                }
             ],
             employeeFields: [
                 {
@@ -129,12 +137,27 @@ const app = new Vue({
                     key: 'title',
                     label: 'Titula',
                     sortable: false
+                }
+            ],
+            doseFields: [
+                {
+                    key: 'processed',
+                    label: 'Obrađena',
+                    class: 'text-center',
+                    sortable: false
                 },
+                {
+                    key: 'arrival.date',
+                    label: 'Datum',
+                    class: 'text-center',
+                    sortable: false
+                }
             ],
             eventsPage: 1,
             arrivalsPage: 1,
             donatorsPage: 1,
             employeesPage: 1,
+            dosesPage: 1,
             perPage: 10,
             filter: ''
         }
@@ -165,6 +188,9 @@ const app = new Vue({
         employeeClick(record) {
             window.location = "/employees/" + record.id;
         },
+        doseClick(record) {
+            window.location = "/doses/" + record.id;
+        },
         deleteModel(route, id) {
             axios.delete('/' + route + '/' +  id).
             then(response => {
@@ -185,6 +211,12 @@ const app = new Vue({
                 return item.first_name.toLowerCase().includes(this.filter.toLowerCase()) ||
                     item.last_name.toLowerCase().includes(this.filter.toLowerCase())
             });
-        }
+        },
+        filterArrivals: function (items) {
+            return items.filter(item => {
+                return item.donator.first_name.toLowerCase().includes(this.filter.toLowerCase()) ||
+                    item.donator.last_name.toLowerCase().includes(this.filter.toLowerCase())
+            });
+        },
     }
 });

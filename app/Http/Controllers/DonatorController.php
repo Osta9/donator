@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Donator;
+use App\BloodType;
 use Illuminate\Http\Request;
 
 class DonatorController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        $this->middleware('admin');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -78,7 +92,8 @@ class DonatorController extends Controller
      */
     public function edit(Donator $donator)
     {
-        return view('donators.edit', compact('donator'));
+        $blood_types = BloodType::All();
+        return view('donators.edit', compact(['donator', 'blood_types']));
     }
 
     /**
@@ -96,7 +111,7 @@ class DonatorController extends Controller
             'last_name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'blood_type' => 'required|string|max:255',
+            'blood_type_id' => 'required',
             'birth_date' => 'required'
         ]);
 
@@ -105,7 +120,7 @@ class DonatorController extends Controller
             'last_name',
             'address',
             'phone',
-            'blood_type',
+            'blood_type_id',
             'birth_date'
         ]));
 

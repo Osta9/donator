@@ -22,7 +22,7 @@ class CreateArrivalsTable extends Migration
             $table->integer('hemoglobin');
             $table->integer('blood_sys');
             $table->integer('blood_dia');
-            $table->boolean('accepted')->default(false);
+            $table->text('accepted')->nullable();
             $table->text('reason')->nullable();
             $table->timestamps();
         });

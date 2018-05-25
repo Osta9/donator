@@ -16,6 +16,7 @@ class DosesTableSeeder extends Seeder
             $faker = Faker::create('App\Dose');
             DB::table('doses')->insert([
                 'arrival_id' => $faker->randomElement(Arrival::pluck('id')->toArray()),
+                'blood_type_id' => $faker->randomElement(\App\BloodType::pluck('id')->toArray()),
                 'processed' => $faker->boolean(),
                 'donated' => $faker->boolean(),
             ]);

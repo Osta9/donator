@@ -15,11 +15,11 @@
             </b-col>
         </b-row>
 
-        <b-table striped hover stacked="md" :items="{{$arrivals}}"
+        <b-table striped hover stacked="md" :items="filterArrivals({{$arrivals}})"
                  :fields="arrivalFields" :current-page="arrivalsPage" :per-page="perPage"
                  @row-clicked="arrivalClick">
         </b-table>
-        <b-pagination align="right" :total-rows="{{$arrivals->count()}}" v-model="arrivalsPage" :per-page="perPage">
+        <b-pagination align="right" :total-rows="filterArrivals({{$arrivals}}).length" v-model="arrivalsPage" :per-page="perPage">
         </b-pagination>
     </b-container>
 @endsection
