@@ -14,61 +14,17 @@
                 </b-col>
             </b-row>
         </b-row>
+        @if(Auth::user()->isAdmin())
+            <b-row id="kartice" class="flex-center text-center">
+                @foreach($blood_types as $type)
+                    <b-col cols="6" md="3" title="{{$type->doses_count}}" class="flex-center flex-column">
+                        <img src="/../img/{{$type->img}}.png" class="img-fluid"/>
+                        <h2>{{$type->doses_count}}</h2>
+                    </b-col>
+                @endforeach
+            </b-row>
+        @else
 
-        <b-card-group id="kartice" class="row flex-center text-center">
-            <b-card title="50" class="col-6 col-md-3"
-                    img-src="/../img/ap.png"
-                    img-fluid="yes"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="60" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/bp.png"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="42" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/abp.png"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="112" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/0p.png"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-        </b-card-group>
-
-        <b-card-group id="kartice" class="row flex-center text-center">
-            <b-card title="50" class="col-6 col-md-3"
-                    img-src="/../img/an.png"
-                    img-fluid="yes"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="60" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/bn.png"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="42" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/abn.png"
-                    img-alt="Img"
-                    img-top>
-            </b-card>
-            <b-card title="112" class="col-6 col-md-3"
-                    img-fluid="yes"
-                    img-src="/../img/0n.png"
-                    img-alt="Img"
-                    img-top>
-        </b-card-group>
-        <b-row class="flex-center">
-            <h4>Lista darivatelja</h4>
-        </b-row>
+        @endif
     </b-container>
 @endsection

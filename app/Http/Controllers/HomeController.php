@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\BloodType;
 use App\Donator;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Dose;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $blood_types = BloodType::withCount('doses')->get();
+        return view('home', compact(['blood_types']));
     }
 
     /**

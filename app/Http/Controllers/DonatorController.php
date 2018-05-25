@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Donator;
 use App\BloodType;
+use App\User;
 use Illuminate\Http\Request;
 
 class DonatorController extends Controller
@@ -40,7 +41,9 @@ class DonatorController extends Controller
      */
     public function create()
     {
-        return view('donators.create');
+        $users = User::all();
+
+        return view('donators.create', compact('users'));
     }
 
     /**
@@ -92,8 +95,9 @@ class DonatorController extends Controller
      */
     public function edit(Donator $donator)
     {
+        $users = User::all();
         $blood_types = BloodType::All();
-        return view('donators.edit', compact(['donator', 'blood_types']));
+        return view('donators.edit', compact(['donator', 'blood_types', 'users']));
     }
 
     /**

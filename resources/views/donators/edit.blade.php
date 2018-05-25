@@ -10,6 +10,19 @@
                     {{ method_field('PUT') }}
 
                     <div class="form-group">
+                        <select name="user_id" class="w-100" required>
+                            <option value="0">
+                                Molimo odaberite korisnicki mail iz baze
+                            </option>
+                            @foreach($users as $u)
+                                <option value="{{$u->id}}">
+                                    {{ $u->email }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <input id="first_name" type="text" placeholder="Ime"
                                value="{{$donator->first_name}}"
                                class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
