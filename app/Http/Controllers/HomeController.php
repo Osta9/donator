@@ -36,8 +36,8 @@ class HomeController extends Controller
      */
     public function welcome()
     {
-        //$top = Donator::all()->count()
+        $top = Donator::withCount('doses')->orderBy('doses_count', 'desc')->take(5)->get();
         $events = Event::whereDate('date', '>', Carbon::now())->get();
-        return view('welcome', compact('events'));
+        return view('welcome', compact(['events', 'top']));
     }
 }

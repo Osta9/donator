@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1 class="text-center">Novi donator</h1>
-                <form method="POST" action="/donators" class="donor-form">
+                <form method="POST" action="/employees" class="donor-form">
                     @csrf
                     <div class="form-group">
                         <input id="first_name" type="text" placeholder="Ime"
@@ -30,14 +30,12 @@
                     </div>
 
                     <div class="form-group">
-                        <input id="title" type="text" placeholder="Titula"
-                               class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
-                               name="title" value="{{ old('title') }}" required autofocus>
-                        @if ($errors->has('title'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('title') }}</strong>
-                            </span>
-                        @endif
+                        <select class="form-control w-100"
+                               name="title" required autofocus>
+                            <option value="0">Odaberi titulu</option>
+                            <option value="doktor">Doktor</option>
+                            <option value="osoblje">Osoblje</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

@@ -29,7 +29,7 @@ class DoseController extends Controller
      */
     public function index()
     {
-        $doses = Dose::with('arrival')->get();
+        $doses = Dose::with('arrival', 'blood_type')->get();
 
         return view('doses.index', compact('doses'));
 

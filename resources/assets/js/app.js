@@ -52,7 +52,7 @@ const app = new Vue({
                 {
                     key: 'blood_type',
                     label: 'Krvna grupa',
-                    class: 'text-center',
+                    class: 'text-center flex-center',
                     sortable: false
                 },
             ],
@@ -144,13 +144,19 @@ const app = new Vue({
                     key: 'processed',
                     label: 'Obrađena',
                     class: 'text-center',
-                    sortable: false
+                    sortable: true
                 },
                 {
                     key: 'arrival.date',
                     label: 'Datum',
                     class: 'text-center',
                     sortable: false
+                },
+                {
+                    key: 'blood_type',
+                    label: 'Krvna grupa',
+                    class: 'flex-center text-center',
+                    sortable: true
                 }
             ],
             eventsPage: 1,
